@@ -13,10 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
+import kotlin.collections.HashMap
 
 
 @RestController
-@RequestMapping("parking")
+@RequestMapping("booking")
 class BookingController {
     @Autowired
     private lateinit var iBookingService: IBookingService
@@ -31,6 +33,12 @@ class BookingController {
     {
         var bookinglist = iBookingService.getAllBooking()
         return ResponseEntity(bookinglist,HttpStatus.OK)
+    }
+
+    @GetMapping("/getBookingById/{id}")
+    fun getBookingById(@PathVariable id:String):ResponseEntity<Optional<Booking?>>{
+        var parkingDetails = iBookingService.getBookingById(id)
+        return ResponseEntity(parkingDetails,HttpStatus.OK)
     }
 
     @PostMapping("/payBooking")

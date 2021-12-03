@@ -9,6 +9,7 @@ import com.axis.parkingappbooking.model.Order
 import com.axis.parkingappbooking.model.Parking
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class BookingServiceImpl:IBookingService {
@@ -47,6 +48,10 @@ class BookingServiceImpl:IBookingService {
 
     override fun addOrder(order: Order): Any? {
         return iOrderDAO.save(order)
+    }
+
+    override fun getBookingById(Id: String): Optional<Booking?> {
+        return iBookingDAO.findById(Id)
     }
 
 
